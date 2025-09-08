@@ -16,7 +16,7 @@ alpine:3.20: 7.79 MB
 
 ubuntu:22.04: 77.9 MB
 
-Reflexión: ¿Por qué Alpine es significativamente más ligera que Ubuntu?: Porque Alpine Linux es una distribución minimalista diseñada para ocupar poco espacio
+Reflexión: ¿Por qué Alpine es significativamente más ligera que Ubuntu?: Porque Alpine Linux es una distribución minimalista diseñada para ocupar poco espacio.
 
 ---------------------------------------------------------------------------------------
 
@@ -35,4 +35,28 @@ docker run -it --name test-alpine alpine:3.20 sh
 3. Liste los contenedores: docker ps -a
 <img width="1291" height="389" alt="2 3" src="https://github.com/user-attachments/assets/487f0315-4e93-4d18-b058-69b81ba78224" />
 
-Pregunta: ¿Cuál es la diferencia entre docker ps y docker ps -a?: docker ps muestra solo los contenedores que estén perdidos y docker ps -a muestra todos los contenedores 
+Pregunta: ¿Cuál es la diferencia entre docker ps y docker ps -a?: docker ps muestra solo los contenedores que estén perdidos y docker ps -a muestra todos los contenedores.
+
+--------------------------------------------------------------------------------------------
+
+Ejercicio 3 – Construcción de una imagen propia
+Cree un archivo Dockerfile:
+
+FROM alpine:3.20
+
+RUN apk add --no-cache curl
+
+CMD ["curl", "--version"]
+
+<img width="870" height="98" alt="3 0" src="https://github.com/user-attachments/assets/5958bbbf-c3a4-42d4-89f7-f75a9f5f9234" />
+
+
+1. Construya la imagen: docker build -t mi-alpine-curl .
+   
+<img width="1299" height="296" alt="3 1" src="https://github.com/user-attachments/assets/db699ae2-1efa-4d3b-90a6-f37c5bf69cd7" />
+
+2. Ejecute un contenedor desde su nueva imagen: docker run --rm mi-alpine-curl
+
+<img width="1292" height="231" alt="3 2" src="https://github.com/user-attachments/assets/c24ff27a-3c3f-4888-b1c7-5810577e335f" />
+
+Pregunta: ¿Qué sucede con el contenedor cuando se utiliza la opción --rm?: Se elimina automáticamente cuando el proceso principal dentro del contenedor termine.
