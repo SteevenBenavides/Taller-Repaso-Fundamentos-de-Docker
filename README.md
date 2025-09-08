@@ -167,28 +167,38 @@ Ejercicio 6 – Repaso: Volúmenes vs Bind Mounts
 Parte A – Named Volume
 
 1. Cree un volumen: docker volume create mysqldata
-   
+<img width="353" height="70" alt="6 1" src="https://github.com/user-attachments/assets/b7466c1d-a03b-46dc-8fa4-bd1d60900aa9" />
+
 2. Levante un contenedor con MySQL que use este volumen: docker run -d --name db -e MYSQL_ROOT_PASSWORD=pass \
 -v mysqldata:/var/lib/mysql mysql:8
+<img width="602" height="342" alt="6 2" src="https://github.com/user-attachments/assets/431f44ff-3417-4b3c-be2f-e5791c5717e2" />
 
 3. Dentro de la base de datos, cree una tabla de prueba con algunos registros.
-   
+<img width="831" height="427" alt="6 3" src="https://github.com/user-attachments/assets/a1c53f2f-54e1-4c54-94ae-35759babfcb0" />
+
 4. Elimine el contenedor y levante uno nuevo con el mismo volumen.
-   
+<img width="209" height="45" alt="6 4" src="https://github.com/user-attachments/assets/d2b7ded6-304e-490b-9917-094a2a95e8ed" />
+<img width="657" height="86" alt="6 5" src="https://github.com/user-attachments/assets/08265def-d7e0-4de9-963b-3c0e743d6ef5" />
+
 5. Verifique que los datos persisten.
-   
+<img width="810" height="553" alt="6 6" src="https://github.com/user-attachments/assets/37eecd1a-ec31-4890-bf65-238d599adf41" />
+
 Parte B – Bind Mount
 
 En el host, cree un directorio: mkdir ~/bindtest && echo "Linea inicial" > ~/bindtest/info.txt
+<img width="465" height="77" alt="7 1" src="https://github.com/user-attachments/assets/bc726762-41e2-4331-9a25-7a43fe3adc69" />
 
 1. Levante un contenedor de Alpine montando el directorio: docker run -it --rm -v ~/bindtest:/data alpine sh
-   
+<img width="821" height="123" alt="7 2" src="https://github.com/user-attachments/assets/376d3c36-c37d-4546-a40d-7bfcefa75d80" />
+
 2. Dentro del contenedor, agregue una línea a info.txt y cree un archivo nuevo.
-   
+<img width="821" height="90" alt="7 2 copia" src="https://github.com/user-attachments/assets/591d559e-f781-45d0-b146-89c5f23569b6" />
+ 
 3. Desde el host, confirme que los cambios están reflejados en ~/bindtest.
-   
+<img width="532" height="184" alt="7 3" src="https://github.com/user-attachments/assets/2baee152-fde7-4a7c-8fe7-d9b3fcbcd868" />
+
 Reflexión:
 
-● ¿Qué diferencia observa entre usar volúmenes y bind mounts?
+● ¿Qué diferencia observa entre usar volúmenes y bind mounts?: Los volúmenes los maneja Docker y se guardan en /var/lib/docker/volumes y bind mounts usan carpetas y archivos del host.
 
-● ¿En qué casos resulta preferible usar uno u otro?
+● ¿En qué casos resulta preferible usar uno u otro? Los volúmenes son buenos para bases de datos y bind mount es bueno para pruebas o compartir archivos con el host.
