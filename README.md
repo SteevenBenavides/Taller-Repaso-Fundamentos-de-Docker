@@ -110,4 +110,53 @@ Preguntas de repaso
 5. ¿Qué rol cumple un Dockerfile dentro de un proyecto? Define cómo contruir la imagen.
 
 --------------------------------------------------------------------------------------------------------
+Ejercicio 5 – API con archivo copiado desde el host
+Construya una imagen personalizada que copie un archivo JSON desde el host hacia el contenedor, levante una API sencilla y exponga endpoints que permitan interactuar con dicho archivo mediante métodos HTTP.
 
+Pasos a desarrollar:
+
+1. En el host, cree un archivo students.json con registros iniciales [
+{"id": 1, "nombre": "Ana"},
+{"id": 2, "nombre": "Carlos"}
+]
+
+<img width="332" height="231" alt="55 1" src="https://github.com/user-attachments/assets/e94e1e85-da12-47ec-a798-42bc687a75a2" />
+
+2. Implemente un archivo app.py con Flask que permita:
+
+○ Listar estudiantes (GET /students).
+
+○ Agregar un estudiante (POST /students).
+
+○ Actualizar un estudiante (PATCH /students/<id>).
+
+<img width="389" height="541" alt="55 2" src="https://github.com/user-attachments/assets/570149a0-4d2d-4449-9899-3ef8e8a1c06f" />
+
+3. Defina un Dockerfile que:
+
+● Use como base cualquier imagen base de Python slim que le permita que funcione FastAPI.
+
+● Copie app.py y students.json al directorio /app.
+
+● Instale FastAPI.
+
+● Ejecute la aplicación con CMD ["tu_comando", "archivo.py"].
+
+   <img width="338" height="164" alt="55 3" src="https://github.com/user-attachments/assets/0eecd7a8-4bc4-4096-a6b8-a3a62579d455" />
+
+4. Construya la imagen con: docker build -t api-students .
+   
+   <img width="1286" height="378" alt="55 4" src="https://github.com/user-attachments/assets/c19f12eb-326d-41b5-88a5-063c3461e31a" />
+
+5. Levante un contenedor en segundo plano: docker run -d --name api -p 5000:5000 api-students
+   
+   <img width="654" height="81" alt="55 5" src="https://github.com/user-attachments/assets/cae10488-87eb-48cf-aa46-8f5ee74b91c2" />
+
+6. Realice pruebas desde el host con curl:
+    
+● GET
+
+● POST
+<img width="1295" height="157" alt="55 6" src="https://github.com/user-attachments/assets/777ffcfc-d43e-468a-80ee-6d2b3cf5311c" />
+
+-----------------------------------------------------------------------------------------------------------------
