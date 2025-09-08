@@ -60,3 +60,20 @@ CMD ["curl", "--version"]
 <img width="1292" height="231" alt="3 2" src="https://github.com/user-attachments/assets/c24ff27a-3c3f-4888-b1c7-5810577e335f" />
 
 Pregunta: ¿Qué sucede con el contenedor cuando se utiliza la opción --rm?: Se elimina automáticamente cuando el proceso principal dentro del contenedor termine.
+
+------------------------------------------------------------------------------------------------
+Ejercicio 4 – Puertos internos vs externos
+
+1. Cree un archivo index.html en el host: <h1>Hola Docker</h1>
+<img width="485" height="95" alt="4 1" src="https://github.com/user-attachments/assets/9454002e-0451-48c8-b80f-42695d992923" />
+
+2. Levante un contenedor de Nginx sirviendo ese archivo con un bind mount: docker run -d --name web -p 8080:80 -v $(pwd)/index.html:/usr/share/nginx/html/index.html:ro nginx:alpine
+<img width="1088" height="72" alt="4 2" src="https://github.com/user-attachments/assets/3ccb49d6-112d-41f0-87e8-a695fe9cb130" />
+
+
+3. Abra http://localhost:8080 en el navegador
+<img width="458" height="139" alt="4 3" src="https://github.com/user-attachments/assets/3a29fd14-12f0-4e75-ad78-c68eb51bd6a6" />
+
+Explicación:
+● 80 es el puerto interno del contenedor (donde escucha Nginx).
+● 8080 es el puerto externo en el host (desde donde se accede al servicio).
