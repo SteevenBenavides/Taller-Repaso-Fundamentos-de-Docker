@@ -75,5 +75,39 @@ Ejercicio 4 – Puertos internos vs externos
 <img width="458" height="139" alt="4 3" src="https://github.com/user-attachments/assets/3a29fd14-12f0-4e75-ad78-c68eb51bd6a6" />
 
 Explicación:
+
 ● 80 es el puerto interno del contenedor (donde escucha Nginx).
+
 ● 8080 es el puerto externo en el host (desde donde se accede al servicio).
+
+------------------------------------------------------------------------------------------------------
+
+Ejercicio 5 – Imágenes slim vs alpine
+1. Descargue dos imágenes de Python: docker pull python:3.12-slim
+docker pull python:3.12-alpine
+<img width="839" height="405" alt="5 1" src="https://github.com/user-attachments/assets/9ede9dad-7894-4b35-983d-73ee5d470a5b" />
+
+2. Compare los tamaños de ambas (docker images).
+<img width="792" height="294" alt="5 2" src="https://github.com/user-attachments/assets/205c6227-bb8b-4986-949c-0005cf31f385" />
+
+3. Ejecute un contenedor con cada una y verifique el sistema base: docker run --rm -it python:3.12-slim bash
+docker run --rm -it python:3.12-alpine sh
+<img width="732" height="475" alt="5 3" src="https://github.com/user-attachments/assets/4d2588af-eb55-4015-af9b-304b2b69da4f" />
+
+Reflexión:
+
+● slim: más ligera que la versión completa, pero mantiene compatibilidad con librerías clásicas.
+
+● alpine: mucho más pequeña, pero puede requerir ajustes adicionales porque carece de ciertas librerías por defecto.
+
+
+-------------------------------------------------------------------------------------------------------
+Preguntas de repaso
+1. ¿Cuál es la diferencia principal entre una imagen y un contenedor?: La imagen es como una plantilla y el contenedor es la instancia de ejecución de esa imagen.
+2. ¿Qué comando se utiliza para eliminar un contenedor que ya no se requiere?: docker rm "nombre".
+3. ¿Qué ventajas tiene usar imágenes Alpine en proyectos reales?: Son más ligeras y rápidas.
+4. ¿Qué sucede si no se exponen puertos al ejecutar un contenedor? El contenedor corre normal pero los servicios internos no pueden ser accesibles desde afuera.
+5. ¿Qué rol cumple un Dockerfile dentro de un proyecto? Define cómo contruir la imagen.
+
+--------------------------------------------------------------------------------------------------------
+
