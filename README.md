@@ -142,21 +142,53 @@ Pasos a desarrollar:
 
 ● Ejecute la aplicación con CMD ["tu_comando", "archivo.py"].
 
-   <img width="338" height="164" alt="55 3" src="https://github.com/user-attachments/assets/0eecd7a8-4bc4-4096-a6b8-a3a62579d455" />
+<img width="338" height="164" alt="55 3" src="https://github.com/user-attachments/assets/0eecd7a8-4bc4-4096-a6b8-a3a62579d455" />
 
 4. Construya la imagen con: docker build -t api-students .
    
-   <img width="1286" height="378" alt="55 4" src="https://github.com/user-attachments/assets/c19f12eb-326d-41b5-88a5-063c3461e31a" />
+<img width="1286" height="378" alt="55 4" src="https://github.com/user-attachments/assets/c19f12eb-326d-41b5-88a5-063c3461e31a" />
 
 5. Levante un contenedor en segundo plano: docker run -d --name api -p 5000:5000 api-students
    
-   <img width="654" height="81" alt="55 5" src="https://github.com/user-attachments/assets/cae10488-87eb-48cf-aa46-8f5ee74b91c2" />
+<img width="654" height="81" alt="55 5" src="https://github.com/user-attachments/assets/cae10488-87eb-48cf-aa46-8f5ee74b91c2" />
 
 6. Realice pruebas desde el host con curl:
     
 ● GET
 
 ● POST
+
 <img width="1295" height="157" alt="55 6" src="https://github.com/user-attachments/assets/777ffcfc-d43e-468a-80ee-6d2b3cf5311c" />
 
 -----------------------------------------------------------------------------------------------------------------
+
+Ejercicio 6 – Repaso: Volúmenes vs Bind Mounts
+
+Parte A – Named Volume
+
+1. Cree un volumen: docker volume create mysqldata
+   
+2. Levante un contenedor con MySQL que use este volumen: docker run -d --name db -e MYSQL_ROOT_PASSWORD=pass \
+-v mysqldata:/var/lib/mysql mysql:8
+
+3. Dentro de la base de datos, cree una tabla de prueba con algunos registros.
+   
+4. Elimine el contenedor y levante uno nuevo con el mismo volumen.
+   
+5. Verifique que los datos persisten.
+   
+Parte B – Bind Mount
+
+En el host, cree un directorio: mkdir ~/bindtest && echo "Linea inicial" > ~/bindtest/info.txt
+
+1. Levante un contenedor de Alpine montando el directorio: docker run -it --rm -v ~/bindtest:/data alpine sh
+   
+2. Dentro del contenedor, agregue una línea a info.txt y cree un archivo nuevo.
+   
+3. Desde el host, confirme que los cambios están reflejados en ~/bindtest.
+   
+Reflexión:
+
+● ¿Qué diferencia observa entre usar volúmenes y bind mounts?
+
+● ¿En qué casos resulta preferible usar uno u otro?
